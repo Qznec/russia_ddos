@@ -24,9 +24,11 @@ def show_info(_ctx: Context):
     if _ctx.current_ip:
         if _ctx.current_ip == _ctx.start_ip:
             your_ip = Fore.CYAN + my_ip_masked
-        else:
+        elif _ctx.current_ip != DEFAULT_CURRENT_IP_VALUE:
             your_ip = f'{Fore.RED}IP was changed, check VPN (current IP: {my_ip_masked}){Fore.RESET}'
             _ctx.kill_switch = True
+        else:
+            your_ip = DEFAULT_CURRENT_IP_VALUE
     else:
         your_ip = f'{Fore.RED}Can\'t get your IP. Check internet connection.{Fore.RESET}'
 
