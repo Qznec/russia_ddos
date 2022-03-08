@@ -60,6 +60,7 @@ def init_context(_ctx: Context, args):
 
     _ctx.isCloudflareProtected = __isCloudFlareProtected(_ctx.host, _ctx.user_agents)
     _ctx.start_time = datetime.now()
+    _ctx.kill_switch = False
 
 
 def get_headers_dict(base_headers: List[str]):

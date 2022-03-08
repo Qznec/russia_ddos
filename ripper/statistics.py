@@ -1,6 +1,7 @@
 import threading
 import sys
 import time
+import os
 from datetime import datetime
 from colorama import Fore
 from ripper.context import Context
@@ -25,6 +26,7 @@ def show_info(_ctx: Context):
             your_ip = Fore.CYAN + my_ip_masked
         else:
             your_ip = f'{Fore.RED}IP was changed, check VPN (current IP: {my_ip_masked}){Fore.RESET}'
+            _ctx.kill_switch = True
     else:
         your_ip = f'{Fore.RED}Can\'t get your IP. Check internet connection.{Fore.RESET}'
 
@@ -49,6 +51,8 @@ def show_info(_ctx: Context):
     print('------------------------------------------------------')
 
     sys.stdout.flush()
+    if _ctx.kill_switch:
+        os._exit(0)
 
 
 def show_statistics(_ctx: Context):

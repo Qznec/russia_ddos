@@ -47,6 +47,8 @@ class Context:
     # Method-related stats
     http_codes_counter = defaultdict(int)
 
+    kill_switch = False
+
     # External API and services info
     isCloudflareProtected: bool = False
     sock_manager: SocketManager = SocketManager()
